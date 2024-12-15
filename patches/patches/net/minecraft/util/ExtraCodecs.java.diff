@@ -1,0 +1,11 @@
+--- a/net/minecraft/util/ExtraCodecs.java
++++ b/net/minecraft/util/ExtraCodecs.java
+@@ -220,7 +220,7 @@
+             P object2 = (P)listx.get(1);
+             return biFunction.apply(object, object2);
+         }), object -> ImmutableList.of(function.apply((I)object), function2.apply((I)object)));
+-        Codec<I> codec3 = RecordCodecBuilder.<Pair>create(
++        Codec<I> codec3 = RecordCodecBuilder.<Pair<P, P>>create(
+                 instance -> instance.group(codec.fieldOf(string).forGetter(Pair::getFirst), codec.fieldOf(string2).forGetter(Pair::getSecond))
+                     .apply(instance, Pair::of)
+             )

@@ -1,0 +1,29 @@
+--- a/net/minecraft/server/network/ServerGamePacketListenerImpl.java
++++ b/net/minecraft/server/network/ServerGamePacketListenerImpl.java
+@@ -812,7 +812,7 @@
+         if (itemStack.is(Items.WRITABLE_BOOK)) {
+             ItemStack itemStack2 = itemStack.transmuteCopy(Items.WRITTEN_BOOK);
+             itemStack2.remove(DataComponents.WRITABLE_BOOK_CONTENT);
+-            List<Filterable<Component>> list2 = list.stream().map(filteredTextx -> this.filterableFromOutgoing(filteredTextx).map(Component::literal)).toList();
++            List<Filterable<Component>> list2 = list.stream().map(filteredTextx -> this.filterableFromOutgoing(filteredTextx).<Component>map(Component::literal)).toList();
+             itemStack2.set(
+                 DataComponents.WRITTEN_BOOK_CONTENT,
+                 new WrittenBookContent(this.filterableFromOutgoing(filteredText), this.player.getName().getString(), 0, list2, true)
+@@ -929,6 +929,8 @@
+ 
+                             boolean bl3 = this.player.verticalCollisionBelow;
+                             this.player.move(MoverType.PLAYER, new Vec3(l, m, n));
++                            // not sure what this is for, perhaps it fixes a bug?
++                            double neoformMagic = m;
+                             l = d - this.player.getX();
+                             m = e - this.player.getY();
+                             if (m > -0.5 || m < 0.5) {
+@@ -952,7 +954,7 @@
+                                 || (!bl4 || !serverLevel.noCollision(this.player, aABB)) && !this.isPlayerCollidingWithAnythingNew(serverLevel, aABB, d, e, f)) {
+                                 this.player.absMoveTo(d, e, f, g, h);
+                                 boolean bl5 = this.player.isAutoSpinAttack();
+-                                this.clientIsFloating = m >= -0.03125
++                                this.clientIsFloating = neoformMagic >= -0.03125
+                                     && !bl3
+                                     && this.player.gameMode.getGameModeForPlayer() != GameType.SPECTATOR
+                                     && !this.server.isFlightAllowed()

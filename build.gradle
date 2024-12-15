@@ -1,0 +1,33 @@
+plugins {
+    id "advl" version "1.0-SNAPSHOT"
+}
+
+dependencies {
+    // actually compile only
+    compileOnly "org.jetbrains:annotations:24.1.0"
+    compileOnly "com.google.code.findbugs:jsr305:3.0.2"
+
+    // macos only dependency, should be added to runtime by advl when actually on that platform
+    compileOnly "ca.weblite:java-objc-bridge:1.1"
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
+
+advl {
+    dependOnMinecraft = false
+    dependOnMinecraftDependencies = true
+
+    extractMc {
+        shouldPatch = true
+        patchSource = project.file("patches")
+    }
+}
+
+runMc {
+    classpath = sourceSets.main.runtimeClasspath
+    mainClass = "xyz.ashyboxy.advl.cursed.Launcher"
+}

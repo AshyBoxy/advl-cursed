@@ -1,0 +1,35 @@
+--- a/net/minecraft/nbt/NbtUtils.java
++++ b/net/minecraft/nbt/NbtUtils.java
+@@ -306,8 +306,8 @@
+                     indent(i + 1, stringBuilder);
+                 }
+ 
+-                int jx = list.stream().mapToInt(String::length).max().orElse(0);
+-                String stringx = Strings.repeat(" ", jx);
++                int _jx = list.stream().mapToInt(String::length).max().orElse(0);
++                String stringx = Strings.repeat(" ", _jx);
+ 
+                 for (int m = 0; m < list.size(); m++) {
+                     if (m != 0) {
+@@ -328,10 +328,10 @@
+             case 11:
+                 IntArrayTag intArrayTag = (IntArrayTag)tag;
+                 int[] is = intArrayTag.getAsIntArray();
+-                int jx = 0;
++                int _jx2 = 0;
+ 
+                 for (int n : is) {
+-                    jx = Math.max(jx, String.format(Locale.ROOT, "%X", n).length());
++                    _jx2 = Math.max(_jx2, String.format(Locale.ROOT, "%X", n).length());
+                 }
+ 
+                 int k = is.length;
+@@ -353,7 +353,7 @@
+                             stringBuilder.append(' ');
+                         }
+ 
+-                        stringBuilder.append(String.format(Locale.ROOT, "0x%0" + jx + "X", is[m]));
++                        stringBuilder.append(String.format(Locale.ROOT, "0x%0" + _jx2 + "X", is[m]));
+                     }
+                 } else {
+                     indent(i + 1, stringBuilder).append(" // Skipped, supply withBinaryBlobs true");

@@ -1,0 +1,11 @@
+--- a/net/minecraft/client/gui/screens/inventory/BookViewScreen.java
++++ b/net/minecraft/client/gui/screens/inventory/BookViewScreen.java
+@@ -254,7 +254,7 @@
+                 return new BookViewScreen.BookAccess(writtenBookContent.getPages(bl));
+             } else {
+                 WritableBookContent writableBookContent = itemStack.get(DataComponents.WRITABLE_BOOK_CONTENT);
+-                return writableBookContent != null ? new BookViewScreen.BookAccess(writableBookContent.getPages(bl).map(Component::literal).toList()) : null;
++                return writableBookContent != null ? new BookViewScreen.BookAccess(writableBookContent.getPages(bl).<Component>map(Component::literal).toList()) : null;
+             }
+         }
+     }

@@ -1,0 +1,11 @@
+--- a/net/minecraft/client/resources/model/BlockStateModelLoader.java
++++ b/net/minecraft/client/resources/model/BlockStateModelLoader.java
+@@ -212,7 +212,7 @@
+                 Property<?> property = stateDefinition.getProperty(string3);
+                 if (property != null && iterator.hasNext()) {
+                     String string4 = iterator.next();
+-                    Comparable<?> comparable = getValueHelper((Property<Comparable<?>>)property, string4);
++                    Comparable<?> comparable = getValueHelper(property, string4);
+                     if (comparable == null) {
+                         throw new RuntimeException(
+                             "Unknown value: '" + string4 + "' for blockstate property: '" + string3 + "' " + property.getPossibleValues()

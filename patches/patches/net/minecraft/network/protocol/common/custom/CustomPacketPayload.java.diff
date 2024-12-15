@@ -1,0 +1,11 @@
+--- a/net/minecraft/network/protocol/common/custom/CustomPacketPayload.java
++++ b/net/minecraft/network/protocol/common/custom/CustomPacketPayload.java
+@@ -38,7 +38,7 @@
+                 B innerFriendlyByteBuf, CustomPacketPayload.Type<T> innerType, CustomPacketPayload innerCustomPacketPayload
+             ) {
+                 innerFriendlyByteBuf.writeResourceLocation(innerType.id());
+-                StreamCodec<B, T> innerStreamCodec = this.findCodec(innerType.id);
++                StreamCodec<B, T> innerStreamCodec = (StreamCodec<B, T>) this.findCodec(innerType.id);
+                 innerStreamCodec.encode(innerFriendlyByteBuf, (T)innerCustomPacketPayload);
+             }
+ 

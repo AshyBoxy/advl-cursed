@@ -1,0 +1,11 @@
+--- a/com/mojang/blaze3d/font/TrueTypeGlyphProvider.java
++++ b/com/mojang/blaze3d/font/TrueTypeGlyphProvider.java
+@@ -62,7 +62,7 @@
+                 int l = fT_GlyphSlot.bitmap_top();
+                 int m = fT_Bitmap.width();
+                 int n = fT_Bitmap.rows();
+-                return (GlyphInfo)(m > 0 && n > 0 ? new TrueTypeGlyphProvider.Glyph(k, l, m, n, f, j) : () -> f / this.oversample);
++                return m > 0 && n > 0 ? new TrueTypeGlyphProvider.Glyph(k, l, m, n, f, j) : (GlyphInfo.SpaceGlyphInfo) () -> f / this.oversample;
+             }
+         }
+     }
